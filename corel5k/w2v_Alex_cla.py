@@ -12,12 +12,23 @@ import cPickle as pickle
 import chainer
 import gc
 import csv
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser = argparse.ArgumentParser(description='process net parameters.')
+parser.add_argument("--alpha", help="the alpha parameter", type=float)
+parser.add_argument("--beta", help="the beta parameter", type=float, default=1.0)
+args = parser.parse_args()
 
 PICKLE_PATH="alex_net.pkl"
 original_model=pickle.load(open(PICKLE_PATH))
 
-rate=0.00002#alpha
-weight_p=1.0    #beta
+rate = args.alpha   #alpha
+weight_p = args.beta    #beta
+
+print('begin training.........alpha = %.7f,' % args.alpha)
+
 dim=1000
 
 n_epoch = 500
