@@ -39,15 +39,15 @@ for i in xrange(len(line)):
     label.append(line[i])
     index[line[i]]=i
 
-beta = 0.03
+beta = 7000000000000 
 
 def calc_similarity(w1, w2):
     dis = (1 - model.similarity(w1, w2)) / 2
-    sim = np.exp(-beta * np.power(dis, 1))
+    sim = np.exp(-beta * np.power(dis, 25.1))
     if(w1 == w2):
         sim = 1.0
-    #if(sim < 0.000001):
-        #sim = 0
+    if(sim < 0.00001):
+        sim = 0
     return sim
 
 '''
